@@ -39,9 +39,14 @@ fun HomeView() {
         var peso by remember { mutableStateOf("") }
         var altura by remember { mutableStateOf("") }
 
-        CustomOutlinedTextField(label = "Edad (Años)", value = edad, onValueChange = { edad = it })
+        CustomOutlinedTextField(
+            label = "Edad (Años)",
+            value = edad,
+            onValueChange = { edad = it })
         CustomSpacer()
-        CustomOutlinedTextField(label = "Peso (Kg)", value = peso, onValueChange = { peso = it })
+        CustomOutlinedTextField(label = "Peso (Kg)",
+            value = peso,
+            onValueChange = { peso = it })
         CustomSpacer()
         CustomOutlinedTextField(
             label = "Altura (Cm)",
