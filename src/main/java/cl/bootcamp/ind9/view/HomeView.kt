@@ -39,22 +39,22 @@ fun HomeView() {
 
         CustomOutlinedTextField(
             label = "Edad (Años)",
-            value = viewModel.edad,
-            onValueChange = {viewModel.edad = it },
+            value = viewModel.state.value.edad,
+            onValueChange = {viewModel.updateEdad(it) },
             focusManager = focusManager
         )
         CustomSpacer()
         CustomOutlinedTextField(
             label = "Peso (Kg)",
-            value = viewModel.peso,
-            onValueChange = {viewModel.peso = it },
+            value = viewModel.state.value.peso,
+            onValueChange = {viewModel.updatePeso(it)},
             focusManager = focusManager
         )
         CustomSpacer()
         CustomOutlinedTextField(
             label = "Altura (Cm)",
-            value = viewModel.altura,
-            onValueChange = {viewModel.altura = it },
+            value = viewModel.state.value.alto,
+            onValueChange = {viewModel.updateAlto(it) },
             focusManager = focusManager
         )
         CustomSpacer()
@@ -70,6 +70,6 @@ fun HomeView() {
 
         CustomSpacer()
 
-        CustomText("${String.format("%.1f", viewModel.imcResult)}")
+        CustomText(String.format("%.1f", viewModel.state.value.imcResult))
     }
 }
