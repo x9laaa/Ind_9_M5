@@ -5,7 +5,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
@@ -30,6 +37,22 @@ fun HomeView() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        var showDialog by remember { mutableStateOf(false) } // Controlar la visibilidad del AlertDialog
+
+        // Mostrar el AlertDialog al iniciar
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = { Text("¡CUIDADO!") },
+                text = { Text("No te olvides de llenar todos los campos con los datos solicitados.") },
+                confirmButton = {
+                    TextButton(onClick =  { showDialog = false }) {
+                        Text("Entendido")
+                    }
+                }
+            )
+        }
 
         CustomText("Calculadora de IMC")
         SegmentedButtonSingleSelect()
@@ -66,7 +89,11 @@ fun HomeView() {
                 .padding(
                     horizontal = 10.dp
                 )
-        ) { viewModel.calculateIMC() }
+        ) {
+            viewModel.calculateIMC()
+            showDialog = true
+
+        }
 
         CustomSpacer()
 
